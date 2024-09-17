@@ -1,5 +1,4 @@
 # Hittite_Script_Decoder
-
 # HittiteTranslator
 
 ## Overview
@@ -10,12 +9,12 @@
 
 ### Dictionary
 
-- **dictionary**: Maps English words and phrases to Hittite equivalents.
-- **reverseDictionary**: Maps Hittite words back to their English meanings.
+- **dictionary**: A `Map<String, String>` that maps English words and phrases to their Hittite equivalents.
+- **reverseDictionary**: A `Map<String, String>` that maps Hittite words back to their English meanings.
 
 ### Static Initialization
 
-Populates both dictionaries with predefined translations and phrases.
+Populates both dictionaries with predefined translations and phrases. Ensure that these dictionaries are populated with appropriate translations to handle the sentences effectively.
 
 ## Methods
 
@@ -24,67 +23,194 @@ Populates both dictionaries with predefined translations and phrases.
 **Purpose**: Translates an English sentence into Hittite.
 
 **Process**:
-1. Splits the sentence into words or phrases.
-2. Looks up each word or phrase in the dictionary.
-3. Checks for longer phrases if direct matches are not found.
-4. Joins translated words into a single Hittite sentence.
+1. **Split the Sentence**: Split the input sentence into individual words or phrases.
+2. **Look Up Each Word**: Check the dictionary for translations of each word or phrase.
+3. **Check for Phrases**: If a direct match is not found, check if longer phrases are present in the dictionary.
+4. **Join Translations**: Combine the translated words or phrases into a single Hittite sentence.
 
-### getMeaning(String hittiteWord)
+**Example**:
+```java
+public String translateToHittite(String englishSentence) {
+    String[] words = englishSentence.split(" ");
+    StringBuilder hittiteSentence = new StringBuilder();
+    
+    for (String word : words) {
+        String translated = dictionary.getOrDefault(word, null);
+        if (translated == null) {
+            // Handle longer phrases or unknown words
+            translated = "Unknown"; // Placeholder for unknown words
+        }
+        hittiteSentence.append(translated).append(" ");
+    }
+    
+    return hittiteSentence.toString().trim();
+}
 
-**Purpose**: Retrieves the English meaning of a Hittite word.
+getMeaning(String hittiteWord)
+Purpose: Retrieves the English meaning of a Hittite word.
 
-**Process**:
-1. Looks up the word in the reverse dictionary.
-2. Returns its English equivalent, or "Unknown" if not found.
+Process:
 
-### translateAndExplain(String englishSentence)
+Look Up the Word: Check the reverse dictionary for the English equivalent.
+Return the Meaning: If found, return the English meaning; otherwise, return "Unknown".
+Example:
 
-**Purpose**: Translates an English sentence to Hittite and explains each Hittite word.
+java
+Copy code
+public String getMeaning(String hittiteWord) {
+    return reverseDictionary.getOrDefault(hittiteWord, "Unknown");
+}
+translateAndExplain(String englishSentence)
+Purpose: Translates an English sentence to Hittite and explains each Hittite word.
 
-**Process**:
-1. Translates the sentence.
-2. Retrieves and formats the English meanings of each Hittite word.
+Process:
 
-## Main Method
+Translate the Sentence: Use translateToHittite() to get the Hittite translation.
+Retrieve Meanings: For each Hittite word in the translation, use getMeaning() to find its English meaning.
+Format the Explanation: Combine the Hittite words and their English meanings.
+Example:
 
-**Purpose**: Facilitates user interaction.
+java
+Copy code
+public String translateAndExplain(String englishSentence) {
+    String hittiteSentence = translateToHittite(englishSentence);
+    String[] hittiteWords = hittiteSentence.split(" ");
+    
+    StringBuilder explanation = new StringBuilder();
+    
+    for (String hittiteWord : hittiteWords) {
+        String meaning = getMeaning(hittiteWord);
+        explanation.append(hittiteWord).append(" (").append(meaning).append(") ");
+    }
+    
+    return explanation.toString().trim();
+}
+Main Method
+Purpose: Facilitates user interaction.
 
-**Process**:
-1. Prompts users to enter English sentences.
-2. Translates and explains the sentences.
-3. Continues until the user types "exit".
+Process:
 
-## Usage Example
+Prompt for Input: Ask users to enter English sentences.
+Translate and Explain: Use translateAndExplain() to process the input.
+Continue or Exit: Repeat the process until the user types "exit".
+Example:
 
-**Input**:
-good morning, how are you today?
+java
+Copy code
+import java.util.Scanner;
 
-**Processing**:
+public class HittiteTranslator {
+    static {
+        // Static initialization of dictionary and reverseDictionary
+        // Populate dictionary and reverseDictionary with predefined values
+    }
 
-**Translation**:
-- good → kinu
-- morning → dūru
-- how are you → ka tu sa?
-- today → anā
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        HittiteTranslator translator = new HittiteTranslator();
+        
+        while (true) {
+            System.out.println("Enter an English sentence (type 'exit' to quit):");
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("exit")) {
+                break;
+            }
+            
+            String explanation = translator.translateAndExplain(input);
+            System.out.println("Explanation:");
+            System.out.println(explanation);
+        }
+        
+        scanner.close();
+    }
+}
+getMeaning(String hittiteWord)
+Purpose: Retrieves the English meaning of a Hittite word.
 
-**Combined Translation**: kinu dūru ka tu sa? anā
+Process:
 
-**Explanation**:
-- **kinu** (good)
-- **dūru** (morning)
-- **ka** (how)
-- **tu** (you)
-- **sa** (are)
-- **anā** (today)
+Look Up the Word: Check the reverse dictionary for the English equivalent.
+Return the Meaning: If found, return the English meaning; otherwise, return "Unknown".
+Example:
 
-**Result**: kinu (good) dūru (morning) ka (how) tu (you) sa (are) anā (today)
+java
+Copy code
+public String getMeaning(String hittiteWord) {
+    return reverseDictionary.getOrDefault(hittiteWord, "Unknown");
+}
+translateAndExplain(String englishSentence)
+Purpose: Translates an English sentence to Hittite and explains each Hittite word.
 
-## Running the Program
+Process:
 
-1. **Compile** the program using:
-   ```bash
-   javac HittiteTranslator.java
+Translate the Sentence: Use translateToHittite() to get the Hittite translation.
+Retrieve Meanings: For each Hittite word in the translation, use getMeaning() to find its English meaning.
+Format the Explanation: Combine the Hittite words and their English meanings.
+Example:
 
+java
+Copy code
+public String translateAndExplain(String englishSentence) {
+    String hittiteSentence = translateToHittite(englishSentence);
+    String[] hittiteWords = hittiteSentence.split(" ");
+    
+    StringBuilder explanation = new StringBuilder();
+    
+    for (String hittiteWord : hittiteWords) {
+        String meaning = getMeaning(hittiteWord);
+        explanation.append(hittiteWord).append(" (").append(meaning).append(") ");
+    }
+    
+    return explanation.toString().trim();
+}
+Main Method
+Purpose: Facilitates user interaction.
 
+Process:
 
+Prompt for Input: Ask users to enter English sentences.
+Translate and Explain: Use translateAndExplain() to process the input.
+Continue or Exit: Repeat the process until the user types "exit".
+Example:
+
+java
+Copy code
+import java.util.Scanner;
+
+public class HittiteTranslator {
+    static {
+        // Static initialization of dictionary and reverseDictionary
+        // Populate dictionary and reverseDictionary with predefined values
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        HittiteTranslator translator = new HittiteTranslator();
+        
+        while (true) {
+            System.out.println("Enter an English sentence (type 'exit' to quit):");
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("exit")) {
+                break;
+            }
+            
+            String explanation = translator.translateAndExplain(input);
+            System.out.println("Explanation:");
+            System.out.println(explanation);
+        }
+        
+        scanner.close();
+    }
+}
+**getMeaning(String hittiteWord)**
+Purpose: Retrieves the English meaning of a Hittite word.
+
+Process:
+
+Look Up the Word: Check the reverse dictionary for the English equivalent.
+Return the Meaning: If found, return the English meaning; otherwise, return "Unknown".
+
+public String getMeaning(String hittiteWord) {
+    return reverseDictionary.getOrDefault(hittiteWord, "Unknown");
+}
 
