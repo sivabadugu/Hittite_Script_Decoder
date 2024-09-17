@@ -28,4 +28,28 @@ Populates both dictionaries with predefined translations and phrases. Ensure tha
 2. **Look Up Each Word**: Check the dictionary for translations of each word or phrase.
 3. **Check for Phrases**: If a direct match is not found, check if longer phrases are present in the dictionary.
 4. **Join Translations**: Combine the translated words or phrases into a single Hittite sentence.
+## Usage Example
 
+**Input**: hello how are you
+
+**Processing**:
+
+**Translation**:
+- hello → salu
+- how are you → ka tu sa?
+
+**Combined Translation**: salu ka tu sa?
+
+**Explanation**:
+- salu (hello)
+- ka (how)
+- tu (you)
+- sa (are)
+
+**Result**: salu (hello) ka (how) tu (you) sa (are)
+
+## Running the Program
+
+1. **Compile** the program using:
+   ```bash
+   javac HittiteTranslator.java
