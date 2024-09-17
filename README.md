@@ -1,5 +1,7 @@
 # Hittite_Script_Decoder
 
+# HittiteTranslator
+
 ## Overview
 
 **HittiteTranslator** is a Java application designed to translate English sentences into the Hittite language. It also provides explanations for each Hittite word, showing their English meanings.
@@ -23,7 +25,7 @@ Populates both dictionaries with predefined translations and phrases.
 
 **Process**:
 1. Splits the sentence into words or phrases.
-2. Looks up each in the dictionary.
+2. Looks up each word or phrase in the dictionary.
 3. Checks for longer phrases if direct matches are not found.
 4. Joins translated words into a single Hittite sentence.
 
@@ -55,28 +57,34 @@ Populates both dictionaries with predefined translations and phrases.
 ## Usage Example
 
 **Input**:
-
-
+good morning, how are you today?
 
 **Processing**:
 
 **Translation**:
-- hello → salu
+- good → kinu
+- morning → dūru
 - how are you → ka tu sa?
+- today → anā
 
-**Combined Translation**: salu ka tu sa?
+**Combined Translation**: kinu dūru ka tu sa? anā
 
 **Explanation**:
-- salu (hello)
-- ka (how)
-- tu (you)
-- sa (are)
+- **kinu** (good)
+- **dūru** (morning)
+- **ka** (how)
+- **tu** (you)
+- **sa** (are)
+- **anā** (today)
 
-**Result**: salu (hello) ka (how) tu (you) sa (are)
+**Result**: kinu (good) dūru (morning) ka (how) tu (you) sa (are) anā (today)
 
 ## Running the Program
 
 1. **Compile** the program using:
    ```bash
    javac HittiteTranslator.java
+
+
+
 
