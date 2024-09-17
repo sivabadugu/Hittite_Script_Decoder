@@ -1,6 +1,6 @@
 # Hittite_Script_Decoder
-<h1>Overview<h1>
-HittiteTranslator is a Java application that translates English sentences into the Hittite language. It also provides explanations for each Hittite word, showing their English meanings.
+<h4>Overview<h4>
+<mark>HittiteTranslator </mark>is a Java application that translates English sentences into the Hittite language. It also provides explanations for each Hittite word, showing their English meanings.
 
 Components
 Dictionary
